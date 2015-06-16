@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616102234) do
+ActiveRecord::Schema.define(version: 20150616163401) do
 
   create_table "a03a3_group", id: false, force: :cascade do |t|
     t.datetime "Tour_Date",                             null: false
@@ -204,6 +204,14 @@ ActiveRecord::Schema.define(version: 20150616102234) do
     t.integer  "Cancel_Mark",     limit: 4, null: false
   end
 
+  create_table "fights", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.string   "count",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -214,9 +222,24 @@ ActiveRecord::Schema.define(version: 20150616102234) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.string   "num",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "temps", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "count",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tourorders", force: :cascade do |t|

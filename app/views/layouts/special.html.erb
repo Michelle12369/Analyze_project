@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProjectApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
+  <%= csrf_meta_tags %>
+</head>
+<body >
+
+  <ul class="nav nav-tabs" role="tablist" id="myTab" >
+
+   <li><%=link_to "Home", root_path%></li>
+   <li><%=link_to "Click analysis", algo1_path%></li>
+   <li><%=link_to "Order analysis", algo2_path%></li>
+   <li><%=link_to "Effective click", algo3_path%> </li>
+   <li><%=link_to "Customer analysis", algo4_path%> </li>
+   <li><%=link_to "Example", example_path%> </li>
+ </ul>
+
+  <div class="text-center">
+  <%= yield %>
+</div>
+
+<div class="text-center"style="background-color:#4682b4; height:50px; padding-top:10px;">
+  <h4 style="color:white"> © 2015 HelloWorld Some Rights Reserved</h4>
+
+</div>
+</body>
+</html>
