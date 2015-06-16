@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150606065248) do
+ActiveRecord::Schema.define(version: 20150616102234) do
 
   create_table "a03a3_group", id: false, force: :cascade do |t|
     t.datetime "Tour_Date",                             null: false
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(version: 20150606065248) do
     t.integer  "No_Forfeit_Pax", limit: 4,  null: false
     t.integer  "KK_Mark",        limit: 4,  null: false
   end
+
+  add_index "a05b01_tourorder", ["Order_No"], name: "index_a05b01_tourorder_on_Order_No", using: :btree
 
   create_table "activities", force: :cascade do |t|
     t.datetime "created_at", null: false

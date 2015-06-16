@@ -1,0 +1,151 @@
+<h1>統整分析</h1>
+<%=form_tag example_path,method:"get" do%> 
+<p class="lead">年份搜尋
+  <%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+  <%=submit_tag"搜尋"%> 
+</p>
+<%end%>
+
+<h2>Part1. 點擊數量</h2>
+<table>
+  <tr>
+    <td style="width:500px" class="text-right">
+      <div style="height:200px;">
+        <%@click.each do|c|%> 
+        <%=label_tag(c[0])%> &nbsp;
+        <%=label_tag(c[1])%></br><%end%>
+      </div>
+    </td>
+    <td>	
+      <div id="container"></div>
+    </td>
+  </tr>
+</table>
+<h2>Part2. 下單率</h2>
+<table>
+  <tr>
+    <td style="width:500px" class="text-right">
+      <div style="height:200px;">
+        <%@order.each do|c|%> 
+        <%=label_tag(c[0])%> &nbsp;
+        <%=label_tag(c[1])%></br>
+        <%end%>
+      </div>
+    </td>
+    <td>
+      <div id="container2"></div>
+    </td>
+  </tr>
+</table>
+
+
+<h2>Part3. 有效點擊</h2>
+<h3>點擊</h3>
+
+<p class="text-info">團體:
+  <%=@click0%>+<%=@click1%>+<%=@click3%>+<%=@click5%>=<%=@clicksum%>次
+</p>
+<p class="text-success">機票:
+  <%=@click2%>次
+</p>
+<p class="text-warning">自由行:
+  <%=@click4%>次
+</p>
+
+
+
+<h3 > 下單</h3>  
+
+
+<p class="text-info">團體:<%=@order0%> 次</p>
+<p class="text-success">機票:<%=@order1%>次</p>
+<p class="text-warning">自由行:<%=@order2%>次</p>
+
+
+
+<h3><%= @year%>有效點擊指數</h3>
+<h5>有效點擊指數: (訂單數量/點擊數量)*100</h5>
+團體點擊指數 <p class="text-info"><%=@proportion%></p>
+機票點擊指數 <p class="text-success"><%=@proportionticket%></p>
+自由行點擊指數 <p class="text-warning"><%=@proportionfree%></p>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+
+
+
+  $(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container2').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+          },
+          title: {
+            text: ''
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+              },
+
+            }
+          },
+          series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: <%= @order.to_json.html_safe%>
+          }]
+        });
+        $('#container').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+          },
+          title: {
+            text: ''
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+              },
+
+            }
+          },
+          series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: <%= @click.to_json.html_safe%>
+          }]
+        });
+      });
+
+});
+
+
+</script>

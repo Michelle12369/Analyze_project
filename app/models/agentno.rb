@@ -1,6 +1,7 @@
 class Agentno < ActiveRecord::Base
 	self.table_name = "a04a1_agentno"
-def self.data_count4
+	
+def self.customer_analysis4
     query = <<-SQL
 	select agentno.Agent_Type,count(agentno.Agent_No) as agent_count 
 	from (select * from a04a1_agentno limit 50000) as agent   

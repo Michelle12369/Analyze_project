@@ -1,49 +1,22 @@
-<h2>Dashboard</h2>
+<h1 >下單率分析</h1>
+<h4>查詢不同年份的商品類別下單數量以及圓餅圖</h4>
+<%=form_tag algo2_path,method:"get" do%>
+<p class="lead">年份搜尋
+	<%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+	<%=submit_tag"search" ,class:"btn btn-primary"%> 
+	<%end%>
+</p>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript">
-    
-    $(function () {
+<div style="padding-top:10px;height:200px;background-color:#4682b4;">
+	<h1 style="color:white"><%= @year%>下單數量結果</h1>
+	<h3 style="color:white"> 
+		<%@data.each do|c|%> 
+		<%=label_tag(c[0])%> &nbsp;
+		<%=label_tag(c[1])%>
+	</br>
 
-    $(document).ready(function () {
-
-        // Build the chart
-        $('#container').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: 'algo2'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                    },
-                    
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: <%= @data.to_json.html_safe%>
-            }]
-        });
-    });
-
-});
-
-
-</script>
+	<%end%>
+</h3>
+</div>
+<h1>圓餅圖</h1>
+<%= render "form"%>

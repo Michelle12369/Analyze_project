@@ -27,7 +27,7 @@ class Activity < ActiveRecord::Base
  
 	def self.data_count3
     query = <<-SQL
-	select productyo.Product_Type,count(productyo.Order_No) as product_count 
+	select productyo.Product_Type,count(productyo.Order_No) as product_count ,activity_time
 	from (select * from a05b00_order limit 5000) as product   
 	inner join a05b00_order  as productyo 
 	on product.Order_No =productyo.Order_No group by product.Product_Type;
@@ -36,4 +36,6 @@ class Activity < ActiveRecord::Base
  	data=Order.find_by_sql(query)#.pluck("Service_id")
     data.map{|d| {name:d.Product_Type.strip,count:d.product_count}}
   end
+
+  
 end

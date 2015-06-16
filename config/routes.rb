@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
     get '/2' => 'home#algo2', as: :algo2
     get '/3' => 'home#algo3',as: :algo3
     get '/4' => 'home#algo4', as: :algo4
-
+    get '/5' => 'home#example', as: :example   
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
