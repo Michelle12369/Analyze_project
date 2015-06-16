@@ -38,17 +38,18 @@
 	<table>
 		<tr>
 			<td class="text-right" style="width:600px">
-				<%@order.each do|o|%>
+				<%@datasmall.each do|o|%>
 				<%=label_tag(o[0])%> &nbsp;
 				<%=label_tag(o[1])%>|</br>
 				<%end%>
 			</td>
 			<td>
 
-				<div class="text-left" style="margin-left:10px;color:white">
-					<p>團體:<%=@order0%> 次</p>
-					
-					<p>自由行:<%=@order1%>次</p>
+				<div class="text-left" style="color:white">
+				<%@order.each do|o|%>
+				<%=label_tag(o[0])%> &nbsp;
+				<%=label_tag(o[1])%></br>
+				<%end%>
 				</div>
 			</td>
 		</tr>
@@ -57,9 +58,13 @@
 
 <h1><%= @year%>有效點擊指數</h1>
 <h4>有效點擊指數: (訂單數量/點擊數量)*100</h4>
-團體點擊指數 <p class="text-info"><%=@proportion%></p>
-機票點擊指數 <p class="text-success"><%=@proportionticket%></p>
-自由行點擊指數 <p class="text-warning"><%=@proportionfree%></p>
+<h4>團體點擊指數 <p class="text-info"><%=@proportion%></p></h4>
+系列團:<%=@p0%>
+ＰＡＫ:<%=@p1%>
+特別團:<%=@p2%>
+Minitour:<%=@p3%>
+
+<h4>自由行點擊指數 <p class="text-warning"><%=@proportionfree%></p></h4>
 
 
 

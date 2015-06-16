@@ -19,7 +19,7 @@ def self.click_analysis2
 	from (select * from b01a2_groupclick where Usage_time like "#{time}%")  as tourclick 
 	inner join a03a3_group as tour
 	on tourclick.Tour_Code=tour.Tour_Code
-	group by tour.Tour_Type;
+	group by tour.Tour_Type order by tour_count desc;
 
 	
 

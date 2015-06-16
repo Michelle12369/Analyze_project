@@ -7,16 +7,88 @@
 	<%end%>
 </p>
 
-<div style="padding-top:10px;height:200px;background-color:#4682b4;">
+<div style="padding-top:10px;height:300px;background-color:#4682b4;">
 	<h1 style="color:white"><%= @year%>下單數量結果</h1>
-	<h3 style="color:white"> 
-		<%@data.each do|c|%> 
-		<%=label_tag(c[0])%> &nbsp;
-		<%=label_tag(c[1])%>
-	</br>
+	<table>
+		<tr>
 
-	<%end%>
-</h3>
+				<td style="width:700px">
+					<h3 style="color:white"> 
+					<%@data.each do|c|%> 
+					<%=label_tag(c[0])%> &nbsp;
+					<%=label_tag(c[1])%></br>
+					<%end%>
+					</h3>
+				</td>
+				<td style="width:500px">
+					<h3 style="color:white"> 
+					<%@datasmall.each do|c|%> 
+					<%=label_tag(c[0])%> &nbsp;
+					<%=label_tag(c[1])%></br>
+					<%end%>
+					</h3>
+				</td>
+			
+		</tr>
+	</table>
 </div>
+
 <h1>圓餅圖</h1>
-<%= render "form"%>
+<table>
+	<tr>
+		<td style="width:700px">
+			<%= render "form"%>
+		</td>
+		<td>
+			<div id="container2" ></div>
+		</td>
+	</tr>
+</table>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+
+	$(function () {
+
+		$(document).ready(function () {
+
+        // Build the chart
+        $('#container2').highcharts({
+        	chart: {
+        		plotBackgroundColor: null,
+        		plotBorderWidth: null,
+        		plotShadow: false
+        	},
+        	title: {
+        		text: ''
+        	},
+        	tooltip: {
+        		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        	},
+        	plotOptions: {
+        		pie: {
+        			allowPointSelect: true,
+        			cursor: 'pointer',
+        			dataLabels: {
+        				enabled: true,
+        				format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        				style: {
+        					color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        				}
+        			},
+
+        		}
+        	},
+        	series: [{
+        		type: 'pie',
+        		name: 'Browser share',
+        		data: <%= @datasmall.to_json.html_safe%>
+        	}]
+        });
+    });
+
+	});
+
+
+</script>
+

@@ -1,0 +1,11 @@
+<%=form_tag root_path,method:"get" do%> 
+<p class="lead">年份搜尋
+  <%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+  <%=submit_tag"搜尋",class:"btn btn-primary"%> 
+  </p>
+  <%end%>
+   <%@data.each do|c|%> 
+        <%=label_tag(c[0])%> &nbsp;
+        <%=label_tag(c[1])%></br><%end%>
+  <%= render "form"%>
+  
