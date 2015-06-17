@@ -3,16 +3,22 @@
 <h4>看出點擊與訂單的轉換率</h4>
 <%=form_tag algo3_path,method:"get" do%> 
 <p class="lead">年份搜尋
-	<%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+	<%=select_tag(:years, options_for_select([['choose', nil],['2012', 2012], ['2013', 2013]])) %> 
 	<%=submit_tag"搜尋",class:"btn btn-primary"%> 
 	<%end%>
 </p>
 <div style="background-color:#4682b4; padding-top:10px; padding-buttom:10px;">
-<h1 style="color:white"><%= @year%>產品分類加總</h1>
+	<h1 style="color:white">
+	<%if @year==="0"%>
+ <% @year="2012-2013"%> 
+
+<%end%>
+<%= @year%>  
+	產品分類加總</h1>
 	<h3 style="color:white">點擊</h3>
 	<table>
 		<tr>
-			<td class="text-right" style="width:600px">
+			<td class="text-right" style="width:450px">
 				<%@click.each do|c|%> 
 				<%=label_tag(c[0])%> &nbsp;
 				<%=label_tag(c[1])%>|</br>
@@ -20,13 +26,13 @@
 			</td>
 			<td class="text-left" style="color:white">
 				<p>團體:
-					<%=@click0%>+<%=@click1%>+<%=@click3%>+<%=@click5%>=<%=@clicksum%>次
+					<%=@click0%>+<%=@click2%>+<%=@click3%>+<%=@click4%>=<%=@clicksum%>次
 				</p>
 				<p>機票:
-					<%=@click2%>次
+					<%=@click5%>次
 				</p>
 				<p>自由行:
-					<%=@click4%>次
+					<%=@click1%>次
 				</p>
 			</td>
 		</tr>
@@ -37,7 +43,7 @@
 	
 	<table>
 		<tr>
-			<td class="text-right" style="width:600px">
+			<td class="text-right" style="width:450px">
 				<%@datasmall.each do|o|%>
 				<%=label_tag(o[0])%> &nbsp;
 				<%=label_tag(o[1])%>|</br>
@@ -46,10 +52,10 @@
 			<td>
 
 				<div class="text-left" style="color:white">
-				<%@order.each do|o|%>
-				<%=label_tag(o[0])%> &nbsp;
-				<%=label_tag(o[1])%></br>
-				<%end%>
+					<%@order.each do|o|%>
+					<%=label_tag(o[0])%> &nbsp;
+					<%=label_tag(o[1])%></br>
+					<%end%>
 				</div>
 			</td>
 		</tr>
@@ -58,13 +64,13 @@
 
 <h1><%= @year%>有效點擊指數</h1>
 <h4>有效點擊指數: (訂單數量/點擊數量)*100</h4>
-<h4>團體點擊指數 <p class="text-info"><%=@proportion%></p></h4>
+<h4>團體點擊指數 <p class="text-info"><%= @pgroup%></p></h4>
 系列團:<%=@p0%>
 ＰＡＫ:<%=@p1%>
 特別團:<%=@p2%>
 Minitour:<%=@p3%>
 
-<h4>自由行點擊指數 <p class="text-warning"><%=@proportionfree%></p></h4>
+<h4>自由行點擊指數 <p class="text-warning"><%=@pfree%></p></h4>
 
 
 

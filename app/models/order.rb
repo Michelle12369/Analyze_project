@@ -31,3 +31,5 @@ def self.search3(time)
   
 end
 
+#select productyo.Product_Type,count(productyo.Order_No) as product_count from (select * from a05b00_order where Input_Date like "2012-12%" and Tx_Type="網路" and Internal_Mark=0 and Cancel_Mark=0 and Finish_Mark=-1) as product inner join a05b00_order  as productyo on product.Order_No =productyo.Order_No group by product.Product_Type;
+#and Internal_Mark=0 and Cancel_Mark=0 and Finish_Mark=-1

@@ -2,17 +2,24 @@
 <h4>查詢不同年份的商品類別點擊數量以及圓餅圖</h4>
 <%=form_tag algo1_path,method:"get" do%> 
 <p class="lead">年份搜尋
-  <%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+  <%=select_tag(:years, options_for_select([['choose', nil],['2012', 2012], ['2013', 2013]])) %> 
   <%=submit_tag"搜尋",class:"btn btn-primary"%> 
-  </p>
-  <%end%>
+</p>
+<%end%>
 
 <div style="padding-top:10px;height:400px;background-color:#4682b4;">
-  <h1 style="color:white"><%= @year%>  點擊數量結果</h1>
+  <h1 style="color:white">
+ 
+<%if @year==="0"%>
+ <% @year="2012-2013"%> 
+
+<%end%>
+<%= @year%>  
+  點擊數量結果</h1>
 
   <table>
     <tr>
-      <td class="text-right" style="width:500px">
+      <td class="text-right" style="width:400px">
         <h3 style="color:white"> 
           <%@data.each do|c|%> 
           <%=label_tag(c[0])%> &nbsp;
@@ -24,12 +31,12 @@
   </td>
 
   <td class="text-left">
-    <h4>MiniTour: 不含領隊、小人數的團。行程已定，但有些旅館、餐廳可自選，價格較高。</h4>
-    <h4>特別團: 由客人自行設計的客製化旅行團。</h4>
-    <h4>票團: 只賣機票(通常賣給同業)。</h4>
-    <h4>系列團: 一般的旅行團，行程機票等已固定，跟團旅行。</h4>
-    <h4>自由行: 機票加酒店。</h4>
-    <h4>PAK: 多間旅行社一起賣，通常是在開發新的旅遊景點、路線時可用。</h4>
+    <h5>系列團: 一般的旅行團，行程機票等已固定，跟團旅行。</h5>
+    <h5>自由行: 機票加酒店。</h5>
+    <h5>PAK: 多間旅行社一起賣，通常是在開發新的旅遊景點、路線時可用。</h5>
+    <h5>特別團: 由客人自行設計的客製化旅行團。</h5>
+    <h5>MiniTour: 不含領隊、小人數的團。行程已定，但有些旅館、餐廳可自選，價格較高。</h5>
+    <h5>票團: 只賣機票(通常賣給同業)。</h5>
   </td>
 </tr>
 </table>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616163401) do
+ActiveRecord::Schema.define(version: 20150617161327) do
 
   create_table "a03a3_group", id: false, force: :cascade do |t|
     t.datetime "Tour_Date",                             null: false
@@ -204,6 +204,22 @@ ActiveRecord::Schema.define(version: 20150616163401) do
     t.integer  "Cancel_Mark",     limit: 4, null: false
   end
 
+  create_table "clicks", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "count",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "doorders", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "count",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "fights", force: :cascade do |t|
     t.integer  "year",       limit: 4
     t.string   "name",       limit: 255
@@ -215,6 +231,14 @@ ActiveRecord::Schema.define(version: 20150616163401) do
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ods", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "count",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -238,6 +262,22 @@ ActiveRecord::Schema.define(version: 20150616163401) do
   create_table "temps", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "count",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "todds", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "count",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "tods", force: :cascade do |t|
+    t.integer  "year",       limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "count",      limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

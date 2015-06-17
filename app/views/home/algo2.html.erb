@@ -1,33 +1,39 @@
-<h1 >下單率分析</h1>
+<h1 >下單數量分析</h1>
 <h4>查詢不同年份的商品類別下單數量以及圓餅圖</h4>
 <%=form_tag algo2_path,method:"get" do%>
 <p class="lead">年份搜尋
-	<%=select_tag(:years, options_for_select([['選擇', nil],['2012', 2012], ['2013', 2013]])) %> 
+	<%=select_tag(:years, options_for_select([['choose',nil],['2012', 2012], ['2013', 2013]])) %> 
 	<%=submit_tag"search" ,class:"btn btn-primary"%> 
 	<%end%>
 </p>
 
 <div style="padding-top:10px;height:300px;background-color:#4682b4;">
-	<h1 style="color:white"><%= @year%>下單數量結果</h1>
+	<h1 style="color:white">
+	<%if @year==="0"%>
+ <% @year="2012-2013"%> 
+  
+<%end%>
+<%= @year%>  
+	下單數量結果</h1>
 	<table>
 		<tr>
 
-				<td style="width:700px">
-					<h3 style="color:white"> 
+			<td style="width:500px">
+				<h3 style="color:white"> 
 					<%@data.each do|c|%> 
 					<%=label_tag(c[0])%> &nbsp;
 					<%=label_tag(c[1])%></br>
 					<%end%>
-					</h3>
-				</td>
-				<td style="width:500px">
-					<h3 style="color:white"> 
+				</h3>
+			</td>
+			<td style="width:500px">
+				<h3 style="color:white"> 
 					<%@datasmall.each do|c|%> 
 					<%=label_tag(c[0])%> &nbsp;
 					<%=label_tag(c[1])%></br>
 					<%end%>
-					</h3>
-				</td>
+				</h3>
+			</td>
 			
 		</tr>
 	</table>
@@ -36,7 +42,7 @@
 <h1>圓餅圖</h1>
 <table>
 	<tr>
-		<td style="width:700px">
+		<td style="width:400px">
 			<%= render "form"%>
 		</td>
 		<td>
